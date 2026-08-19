@@ -88,37 +88,6 @@ The Gold layer acts as the primary **analytics consumption layer**.
 
 ---
 
-## 🔄 Data Pipeline Flow
-
-```text
-Amazon S3
-   │
-   ▼
-Raw Source Files
-   │
-   ▼
-Bronze
-   │
-   │  Ingestion + Incremental Processing
-   ▼
-Silver
-   │
-   │  Cleaning + Standardization
-   │  Data Quality + Transformation
-   ▼
-Gold
-   │
-   │  Aggregation + Business Logic
-   ▼
-Analytics
-   │
-   ├── Databricks SQL
-   ├── Dashboards
-   └── Databricks Genie
-```
-
----
-
 ## ⚙️ Technology Stack
 
 | Technology | Purpose |
@@ -228,123 +197,7 @@ What are the top 10 products by revenue?
 
 Genie translates natural-language questions into queries against the available analytical data.
 
----
 
-## 🔄 Orchestration
-
-The complete pipeline is orchestrated using **Databricks Jobs**.
-
-A typical workflow is:
-
-```text
-Job Start
-   │
-   ▼
-Bronze Ingestion
-   │
-   ▼
-Silver Transformation
-   │
-   ▼
-Data Quality Checks
-   │
-   ▼
-Gold Aggregation
-   │
-   ▼
-Analytics Tables
-   │
-   ▼
-Job Completion
-```
-
-The workflow can be scheduled for **daily incremental processing**.
-
----
-
-## 📁 Project Structure
-
-```text
-FMCG-Data-Engineering/
-│
-├── README.md
-│
-├── notebooks/
-│   ├── bronze/
-│   ├── silver/
-│   └── gold/
-│
-├── sql/
-│   ├── transformations/
-│   └── analytics/
-│
-├── data/
-│   ├── sample/
-│   └── schemas/
-│
-├── docs/
-│   └── architecture/
-│
-└── config/
-    └── pipeline_config/
-```
-
-> The exact folder structure may vary depending on how the Databricks workspace and Git repository are organized.
-
----
-
-## 🚀 Getting Started
-
-### 1. Clone the Repository
-
-```bash
-git clone <repository-url>
-
-cd FMCG-Data-Engineering
-```
-
-### 2. Configure Amazon S3
-
-Create/configure an S3 location for the raw source data.
-
-Example:
-
-```text
-s3://<bucket-name>/
-    ├── atlon/
-    └── sports-bar/
-```
-
-### 3. Configure Databricks
-
-Open the project in **Databricks** and configure the required:
-
-- Workspace
-- Compute/SQL Warehouse
-- Catalog
-- Schema
-- Storage access
-- Job configuration
-
-### 4. Load Source Data
-
-Place the required source files into the configured S3 landing location.
-
-### 5. Run the Pipeline
-
-Execute the notebooks in the following order:
-
-```text
-Bronze
-   ↓
-Silver
-   ↓
-Gold
-```
-
-Or execute the configured **Databricks Job** for automated processing.
-
----
 
 ## 📈 Expected Outcome
 
@@ -391,9 +244,3 @@ This project was created as a hands-on demonstration of designing and implementi
 It focuses on the complete journey of data:
 
 **Raw Data → Ingestion → Cleaning → Transformation → Aggregation → Analytics**
-
----
-
-## 📌 Disclaimer
-
-This is a **portfolio/learning project** created to demonstrate Data Engineering concepts and technologies. The company names **Atlon** and **Sports Bar** are used as part of the project scenario.
